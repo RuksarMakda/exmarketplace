@@ -1,0 +1,242 @@
+{
+    "version": 2.2,
+    "DEBUG": false,
+    "load_time": 300, 
+
+    "pre_execution": {
+        "consent_management": {
+            "enabled": true,
+            "cmp_frequency": 100,
+            "cmp_timeout": 5000
+        },
+        "video_source": {
+            "enabled": true,
+            "sourceVideo": "//hls.exmarketplace.com/Valica/Good_Move_Srl/20230414_Tvserial_TopId/m2yMuY45/index.m3u8",
+            "sourceType": "application/x-mpegURL",
+            "sourceVideoAlt": "//hls.exmarketplace.com/ExMarketPlace_FZ_LLC/EXPO2020_IT/index.m3u8",
+            "sourceTypeAlt": "application/x-mpegURL",
+            "enable_audio": false,
+            "enable_quality": false
+        },
+        "player_visibility": {
+            "overlay_ads": false,
+            "overlay_ads_content": false,
+            "viewport_functions": true,
+            "overlay_outside_viewport": false,
+            "overlay_outside_viewport_2": true,
+            "pause_outside_viewport": false,
+            "check_viewport_variable": false
+        }
+    },
+    "execution": {
+        "ad_units": {
+            "preroll": {
+                "enabled": true,
+                "preroll_type": "google",
+                "prerollAdUnit": "/42150330,21737146126/Tvserial/Tvserial_preroll",
+                "verizon_tag_url": "/42150330,21737146126/Tvserial/Tvserial_preroll",
+                "cust_keys": [],
+                "cust_values": []
+            },
+            "midroll": {
+                "enabled": true,
+                "midroll_type": "google",
+                "midrollAdUnit": "/42150330,21737146126/Tvserial/Tvserial_midroll",
+                "verizon_midroll_tag_url": "/42150330,21737146126/Tvserial/Tvserial_midroll",
+                "midroll_time": 50,
+                "midroll_throughout": true,
+                "midroll_run": false
+            },
+            "postroll": {
+                "enabled": true,
+                "postroll_type": "google",
+                "postrollAdUnit": "/42150330,21737146126/Tvserial/Tvserial_postroll",
+                "verizon_postroll_tag_url": "",
+                "postroll_can_run": true
+            }
+        },
+        "prebid": {
+            "enabled": false,
+            "prebid_source": "https://cdn.exmarketplace.com/bidder/prebid_adapters/pb_ap_ix_ya.js",
+            "auctionTimeout": 750,
+            "requestBidsTimeout": 1000,
+            "video_mime_types": [
+                "video/mp4",
+                "application/javascript",
+                "application/x-mpegURL",
+                "video/x-ms-wmv"
+            ],
+            "config": {
+                "cache": {
+                    "url": "https://prebid.adnxs.com/pbc/v1/cache"
+                },
+                "debug": "",
+                "enableSendAllBids": true,
+                "targetingControls": {
+                    "alwaysIncludeDeals": true
+                },
+                "priceGranularity": "dense",
+                "deviceAccess": true,
+                "timeoutBuffer": 400,
+                "bidderTimeout": 3000,
+                "pageUrl": "",
+                "ix": {
+                    "mode": "video"
+                },
+                "appnexus": {
+                    "mode": "video"
+                },
+                "yahoossp": {
+                    "mode": "video"
+                },
+                "consentManagement": {
+                    "gdpr": {
+                        "cmpApi": "iab",
+                        "timeout": 5000,
+                        "defaultGdprScope": true,
+                        "rules": [
+                            {
+                                "purpose": "storage",
+                                "enforcePurpose": false,
+                                "enforceVendor": false
+                            },
+                            {
+                                "purpose": "basicAds",
+                                "enforcePurpose": false,
+                                "enforceVendor": false
+                            }
+                        ]
+                    },
+                    "usp": {
+                        "cmpApi": "iab",
+                        "timeout": 100
+                    }
+                },
+                "schain": {
+                    "validation": "off",
+                    "config": {
+                        "ver": 1,
+                        "complete": 1,
+                        "nodes": [
+                            {
+                                "asi": "ExMarketplace.com",
+                                "sid": 0,
+                                "hp": 1
+                            }
+                        ]
+                    }
+                },
+                "userSync": {
+                    "iframeEnabled": true,
+                    "filterSettings": {
+                        "iframe": {
+                            "bidders": [
+                                "ix"
+                            ],
+                            "filter": "include"
+                        }
+                    }
+                }
+            },
+            "bidderSettings": {
+                "ix": {
+                    "storageAllowed": true
+                },
+                "appnexus": {
+                    "storageAllowed": false
+                },
+                "yahoossp": {
+                    "storageAllowed": false
+                }
+            },
+            "bidders": [
+                {
+                    "bidder": "ix",
+                    "enabled": true,
+                    "params": {
+                        "siteId": ""
+                    }
+                },
+                {
+                    "bidder": "appnexus",
+                    "enabled": true,
+                    "params": {
+                        "placementId": 0
+                    }
+                },
+                {
+                    "bidder": "yahoossp",
+                    "enabled": true,
+                    "params": {
+                        "dcn": 0,
+                        "pos": 0
+                    }
+                }
+            ]
+        },
+        "overlay_container": {
+            "overlay_mobile_ver": "top",
+            "overlay_mobile_ver_px": "10px",
+            "overlay_mobile_hor": "right",
+            "overlay_mobile_hor_px": "15%",
+            "overlay_mobile_width_ratio": 70,
+            "overlay_desktop_width_ratio": 60,
+            "overlay_desktop_ver": "top",
+            "overlay_desktop_ver_px": "110px",
+            "overlay_desktop_hor": "right",
+            "overlay_desktop_hor_px": "10px"
+        },
+        "overlay_close_button": {
+            "close_btn_mob_hor": "right",
+            "close_btn_mob_ver": "bottom",
+            "close_btn_mob_ver_px": "-25px",
+            "close_btn_mob_hor_px": "0px",
+            "close_btn_width_mob": "25px",
+            "close_btn_height_mob": "25px",
+            "close_btn_desk_hor": "left",
+            "close_btn_desk_ver": "bottom",
+            "desk_close_btn_desk_ver_px": "-25px",
+            "desk_close_btn_desk_hor_px": "0px",
+            "close_btn_color": "white",
+            "close_back_color": "#E13C87",
+            "close_btn_width_desk": "25px",
+            "close_btn_height_desk": "25px",
+            "close_btn_1_top": "6px",
+            "close_btn_1_left": "11.5px",
+            "close_btn_1_width": "2px",
+            "close_btn_1_height": "13px",
+            "close_btn_border_radius_top": "0px",
+            "close_btn_border_radius_bottom": "5px",
+            "overlay_close_btn_time_frame": 0,
+            "overlay_close_btn_delay": 8000
+        }
+    },
+    "post_execution": {
+        "modal_settings": {
+            "enabled": true,
+            "website_link": "https://www.tvserial.it/",
+            "poster_img_url": "",
+            "css_enabled": true,
+            "replay_player": true
+        }
+    },
+    "script_variables": {
+        "ad_paused": false,
+        "vid_paused": false,
+        "adsMode": false,
+        "videoEnded": false,
+        "endedStatus": false,
+        "isVidMobile": false,
+        "pod_called": false,
+        "overlay_status": false,
+        "close_can_exec": true,
+        "close_clicked": false,
+        "script_load": false,
+        "script_reload": false,
+        "params_string": "",
+        "ad_fill": false,
+        "player_overlay_ends": false,
+        "postroll_ended": false,
+        "postroll_fill": false
+    }
+}
