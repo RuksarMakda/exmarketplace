@@ -1,0 +1,101 @@
+FORMAT: 1A
+HOST: https://adx.exmarketplace.com/api/
+
+# ExMarketPlace - Docs
+
+This API is designed to interact with our marketplace services. More information about Engage can be found on our website: https://adx.exmarketplace.com/
+
+# API URL
+The base url for all API end-points is **https://adx.exmarketplace.com/api/**
+
+### Overview [/overview/{apiKey}/{startDate}/{endDate}/{groupBy}/{timezone}]
+
+## Overview Reporting API [GET]
+
++ Parameters
+  + apiKey (required)
+  + startDate: `2023-08-17` (required) - The start date is in the format YYYY-MM-DD
+  + endDate: `2023-08-18` (required) - The end date is in the format YYYY-MM-DD
+  + groupBy: ["date","DomainName"] (required) - This can be "date","TagName","DomainName","DemandChannel" 
+  + timezone: 0 (required) - The timezone values can lie between -23…-2,-1 ,0, +1,+2..+23 
+
++ Response 200 (application/json) 
+
+        [
+            {
+                "type": "DFP",
+                "date": "2023-08-19",
+                "domain": {},
+                "impressions": "1386",
+                "clicks": "0",
+                "revenue": "$ 0.000",
+                "eCPM": "$ 0.000"
+            }
+        ]
+
+### Overview Targeting [/targeting/{apiKey}/{startDate}/{endDate}/{groupByDate}/{Metrics}]
+
+## Overview Targeting API [GET]
+
++ Parameters
+  + apiKey
+  + startDate: `2023-08-17` (required) - The start date is in the format YYYY-MM-DD
+  + endDate: `2023-08-18` (required) - The end date is in the format YYYY-MM-DD
+  + groupByDate: noDate (required) - This parameter will group reports on days. Should be Date or noDate
+  + Metrics: ["TOTAL_LINE_ITEM_LEVEL_IMPRESSIONS","TOTAL_LINE_ITEM_LEVEL_CLICKS","TOTAL_LINE_ITEM_LEVEL_CTR","TOTAL_LINE_ITEM_LEVEL_WITHOUT_CPD_AVERAGE_ECPM","TOTAL_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE","TOTAL_LINE_ITEM_LEVEL_CPM_AND_CPC_REVENUE"] (required) - This Represent the Columns in Report. Should be passed as array json encoded.
+
++ Response 201 (application/json)
+
+        [
+            {
+                "question": "Favourite programming language?",
+                "published_at": "2015-08-05T08:40:51.620Z",
+                "choices": [
+                    {
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            }
+        ]
+        
+### NPUB API [/npb-realtime/{apiKey}/{startDate}/{endDate}/{dimension}/{timezone}]
+
+## NPUB Reporting API [GET]
+
++ Parameters
+  + apiKey
+  + startDate: `2023-08-17` (required) - The start date is in the format YYYY-MM-DD
+  + endDate: `2023-08-18` (required) - The end date is in the format YYYY-MM-DD
+  + dimension: [`2023-08-20`, "3","mytravelgazette.com"] (required) - This can be ["date","hour","tagName","domain","country"]
+  + timezone: 0 (required) - The timezone values can lie between -23…-2,-1 ,0, +1,+2..+23 
+
++ Response 201 (application/json)
+
+        [
+            {
+               "1":
+                  {
+                     "date":"2023-08-05",
+                     "hour":"11",
+                     "domain":"mytravelgazette.com",
+                     "country":"United States",
+                     "tagName":"Incontent_1",
+                     "adRequests":"2",
+                     "impressions":"0",
+                     "coverage":"100.00 %",
+                     "clicks":"0",
+                     "eCPM":"$ 0",
+                     "NetRevenue":"$0.00"
+                 }
+             }
+        ]
