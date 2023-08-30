@@ -1,23 +1,45 @@
 FORMAT: 1A
 HOST: https://adx.exmarketplace.com/api/
 
-# ExMarketPlace - Docs
+# ExMarketPlace-Docs
 
-This API is designed to interact with our marketplace services. More information about Engage can be found on our website: https://adx.exmarketplace.com/
+ExMarketPlace, Google Certified Publishing Partner, offers full-stack monetization and optimization solutions allowing monetization CPM & CPC with Display, Video & In-App products and has exclusive access to Alpha&Beta features available just for Google Certified Publishing Partner.
+
+Through a Server-to-server header bidding system, ExMarketPlace offers publishers inventory to the major Ad Exchanges connected such as: Verizon Media, Rubicon Project, Amazon Advertising, Xandr, OpenX, Improve Digital, Index Exchange, PubMatic, Sovrn, Smart+ etc; as well as direct integration with Native solutions such as Flurry, OutBrain and Taboola.
+
+This API is designed to interact with our marketplace services. More information can be found on our website 
+***https://adx.exmarketplace.com/***
 
 # API URL
-The base url for all API end-points is **https://adx.exmarketplace.com/api/**
+The base url and Apikey for all API end-points are
+
+|             |  URL
+|------------ |:----------------------------------------------|
+| ```API```   | *https://adx.exmarketplace.com/api/*          |
+| ```ApiKey```| *https://adx.exmarketplace.com/account-info*  |
 
 ### Overview [/overview/{apiKey}/{startDate}/{endDate}/{groupBy}/{timezone}]
 
 ## Overview Reporting API [GET]
 
+**API Description**
+
+ This API will return a detailed report of the number “impressions”, “clicks” and “revenue” grouped by the argument provided.
+
+| Argument |    Name            |   Format                                         |
+|----------|:-------------------|:-------------------------------------------------|
+| 1        |  ```Date Start```  |  YYYY-MM-DD                                      |
+| 2        |  ```Date End```    |  YYYY-MM-DD                                      |
+| 3        |  ```Group by```    | ["Date","TagName","DomainName","DemandChannel"]  |
+| 4        |  ```TimeZone```    | -23....-2,-1 ,0,+1,+2....+23                     |
+
+
 + Parameters
   + apiKey (required)
-  + startDate: `2023-08-17` (required) - The start date is in the format YYYY-MM-DD
-  + endDate: `2023-08-18` (required) - The end date is in the format YYYY-MM-DD
-  + groupBy: ["date","DomainName"] (required) - This can be "date","TagName","DomainName","DemandChannel" 
-  + timezone: 0 (required) - The timezone values can lie between -23…-2,-1 ,0, +1,+2..+23 
+  + startDate: `2023-08-17` (date,required) - The start date is in the format YYYY-MM-DD
+  + endDate: `2023-08-18` (date,required) - The end date is in the format YYYY-MM-DD
+  + groupBy: ["date","DomainName"] (required) - This can be "Date","TagName","DomainName","DemandChannel" 
+  + timezone: 0 (number,required) - The timezone values can lie between -23....-2,-1 ,0,+1,+2....+23
 
 + Response 200 (application/json) 
 
@@ -32,52 +54,80 @@ The base url for all API end-points is **https://adx.exmarketplace.com/api/**
                 "eCPM": "$ 0.000"
             }
         ]
-
-### Overview Targeting [/targeting/{apiKey}/{startDate}/{endDate}/{groupByDate}/{Metrics}]
+        
+### Targeting [/targeting/{apiKey}/{startDate}/{endDate}/{groupByDate}/{Metrics}]
 
 ## Overview Targeting API [GET]
 
+**API Description**
+
+| Argument |    Name               |   Format         |
+|----------|:----------------------|:-----------------|
+| 1        |  ```Date Start```     | YYYY-MM-DD       |
+| 2        |  ```Date End```       | YYYY-MM-DD       |
+| 3        |  ```Group by Date```  | Date *or* noDate |
+| 4        |  ```Metrics```        | [ *Metrics* ]    |
+ 
+**Metrics**
+
+Metric represents a columns in report. It should be passed as an array json encoded.
+
+The following table describes the different metric fields that can be passed in an array.
+
+| Metric                                               |    Represents                                  |                                                             
+|------------------------------------------------------|:-----------------------------------------------|
+| ```TOTAL_LINE_ITEM_LEVEL_IMPRESSIONS```              |  Total Impressions                             |                                                                   |
+| ```TOTAL_LINE_ITEM_LEVEL_CLICKS```                   |  Total Clicks                                  |                                                             
+| ```TOTAL_LINE_ITEM_LEVEL_CTR```                      |  Total CTR                                     |                                                          
+| ```TOTAL_LINE_ITEM_LEVEL_WITHOUT_CPD_AVERAGE_ECPM``` |  Total Average eCPM                            |                                                            |
+| ```TOTAL_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE```    |  Total Impressions Viewed On The User's Screen |       
+| ```TOTAL_LINE_ITEM_LEVEL_CPM_AND_CPC_REVENUE```      |  Total CPM and CPC revenue                     |       
+
 + Parameters
-  + apiKey
-  + startDate: `2023-08-17` (required) - The start date is in the format YYYY-MM-DD
-  + endDate: `2023-08-18` (required) - The end date is in the format YYYY-MM-DD
+  + apiKey (required)
+  + startDate: `2023-08-17` (date,required) - The start date is in the format YYYY-MM-DD
+  + endDate: `2023-08-18` (date,required) - The end date is in the format YYYY-MM-DD
   + groupByDate: noDate (required) - This parameter will group reports on days. Should be Date or noDate
   + Metrics: ["TOTAL_LINE_ITEM_LEVEL_IMPRESSIONS","TOTAL_LINE_ITEM_LEVEL_CLICKS","TOTAL_LINE_ITEM_LEVEL_CTR","TOTAL_LINE_ITEM_LEVEL_WITHOUT_CPD_AVERAGE_ECPM","TOTAL_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE","TOTAL_LINE_ITEM_LEVEL_CPM_AND_CPC_REVENUE"] (required) - This Represent the Columns in Report. Should be passed as array json encoded.
 
 + Response 201 (application/json)
 
         [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
+            [
+            "flipspins",
+            "sovrn-reload=true",
+            "17",
+            "0",
+            "0.00 %",
+            "$ 1.40",
+            "68.75 %",
+            "$ 0.02",
+            "N/A",
+            "N/A"
+            ]
         ]
         
-### NPUB API [/npb-realtime/{apiKey}/{startDate}/{endDate}/{dimension}/{timezone}]
+### NPUB API [/npb-realtime/{apiKey}/{startDate}/{endDate}/{groupBy}/{timezone}]
 
-## NPUB Reporting API [GET]
+## Reporting API [GET]
+
+**API Description**
+
+This API will return a live report of the NPUB with the number “impressions”, “clicks”, "eCPM", “ net revenue” grouped by the argument provided.
+
+| Argument |    Name            |   Format                                |
+|----------|:-------------------|:----------------------------------------|
+| 1        |  ```Date Start```  |  YYYY-MM-DD                             |
+| 2        |  ```Date End```    |  YYYY-MM-DD                             |
+| 3        |  ```Group by```    | ["Hour","Country Name","Section Name"]  |
+| 4        |  ```TimeZone```    | -23....-2,-1 ,0,+1,+2....+23            |
 
 + Parameters
-  + apiKey
-  + startDate: `2023-08-17` (required) - The start date is in the format YYYY-MM-DD
-  + endDate: `2023-08-18` (required) - The end date is in the format YYYY-MM-DD
-  + dimension: [`2023-08-20`, "3","mytravelgazette.com"] (required) - This can be ["date","hour","tagName","domain","country"]
-  + timezone: 0 (required) - The timezone values can lie between -23…-2,-1 ,0, +1,+2..+23 
+  + apiKey (required)
+  + startDate: `2023-08-17` (date,required) - The start date is in the format YYYY-MM-DD
+  + endDate: `2023-08-18` (date,required) - The end date is in the format YYYY-MM-DD
+  + groupBy: ["Hour","Country Name","Section Name"] (required) - This can be ["Hour","Country Name","Section Name"]
+  + timezone: 0 (number,required) - The timezone values can lie between --23....-2,-1 ,0,+1,+2....+23
 
 + Response 201 (application/json)
 
